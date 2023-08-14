@@ -19,7 +19,7 @@
 
 ![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/43910d3a-f69c-41f7-8fc9-ebde4d6b592e)
 
-این تصویر نشان می‌دهد که قسمت عمده‌ی زمان CPU یعنی حدود ۹۱ درصد، در تابع temp سپری شده‌است و این تابع درواقع bottlneck این کلاس می‌باشد.
+این تصویر نشان می‌دهد که قسمت عمده‌ی زمان CPU یعنی حدود 83 درصد، در تابع temp سپری شده‌است و این تابع درواقع bottlneck این کلاس می‌باشد.
 
 ![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/d774ee49-d082-420c-a6ad-0a3f3098b591)
 
@@ -28,5 +28,22 @@
 ![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/c80333a5-6866-4afc-8ba2-e76a6ffdb9c2)
 
 این تصویر نیز به خوبی نشان می‌دهد که عمده‌ی سربار اجرای تابع main کلاس JavaCup به فراخوانی تابع temp مربوط می‌شود.
-حال قصد داریم که با ایجاد تغییر در نحوه‌ی پیاده‌سازی این تابع، سربار اجرایی آن را کاهش دهیم.
+حال قصد داریم که با ایجاد تغییر در نحوه‌ی پیاده‌سازی این تابع، سربار اجرایی آن را کاهش دهیم. با توجه به تصویر اول از خروجی‌های profiling می‌توان حدس زد که بخشی از این سربار به خاطر کوچک بودن ظرفیت اولیه‌ی ArrayList و نیاز به گسترش آن می‌باشد. بنابراین با تخصیص یک ظرفیت اولیه که به اندازه‌ی کافی بزرگ باشد، می‌توان این مسئله را برطرف نمود. کد مورد نظر به صورت زیر می‌شود:
 
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/b82690f7-af2b-40bb-b5e6-b5b35dbf3754)
+
+خروجی profiling این نسخه‌ی ویرایش‌یافته به صورت زیر می‌باشد:
+
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/bd3ef1b8-f873-45dc-af6c-5f5dc6f9ad5b)
+
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/308c1dcc-7ae4-4416-934d-8b4ba122baab)
+
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/00298661-651c-49f4-a4c3-3e74c008b9ea)
+
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/592b2608-750b-4822-9af9-e5a163347502)
+
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/2017517f-2a14-45f3-9a32-4144da0127ca)
+
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/96a97bac-0612-4629-8e6a-e588417741a6)
+
+همانطور که در این خروجی‌ها مشخص است، دیگر سربار اصای کلاس، تابع temp نیست. بلکه فراخوانی‌های Scanner است که بخش اعظم زمان اجرا را به خود اختصاص می‌دهند.
