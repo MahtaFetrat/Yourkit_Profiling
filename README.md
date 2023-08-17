@@ -68,4 +68,16 @@
 
 ![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/62302965/ef3a3c74-dfd0-44ea-9e57-8244d6f3f8bb)
 
+حال کد مربوط به پاسخ‌گویی به کوئری‌ها را که سربار اصلی برنامه است، بهینه‌سازی می‌کنیم. به این ترتیب که لیست customer ها را با کلید id شان وارد یک HashMap می‌کنیم و سپس Query ها را در اردر یک پاسخ می‌دهیم. کد جدید به صورت زیر است.
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/24840082/09339629-c95c-43d3-a0ca-d44d8f83c326)
+
+حال برنامه‌ی جدید را profile می‌کنیم:
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/24840082/331013a8-4dc8-4e80-bc17-e8dc32e61e81)
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/24840082/2714c284-8b68-4f86-af98-30f14abc7fb8)
+
+همانطور که از این دو تصویر مشخص است، دیگر تابع queryCustomers سربار اصلی برنامه نیست و حتی کمتر از دو تابع createQueryIds و prompt می‌باشد. وضعیت مصرف حافظه‌ی این برنامه نیز به صورت زیر می‌شود.
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/24840082/122ae153-baee-4ebf-8090-1a027ba6577e)
+
+و تصویر زیر، خلاصه‌ای از مصرف منابع حافظه‌ای این کلاس را نشان می‌دهد.
+![image](https://github.com/MahtaFetrat/Yourkit_Profiling/assets/24840082/4a6cd270-c745-44cd-8e44-c2b0f28a408b)
 
