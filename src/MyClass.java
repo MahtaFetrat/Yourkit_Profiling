@@ -41,14 +41,24 @@ public class MyClass {
         }
     }
 
+    //    private static void queryCustomers() {
+//        for (int i = 0; i < QUERY_COUNT; i++) {
+//            for (Customer c: customers) {
+//                if (c.id == queryIds.get(i)) {
+//                    // do something for the customer
+//                    break;
+//                }
+//            }
+//        }
+//    }
     private static void queryCustomers() {
+        HashMap<Integer, Customer> customerHashMap = new HashMap<>(customers.size());
+        for (Customer c : customers) {
+            customerHashMap.put(c.id, c);
+        }
         for (int i = 0; i < QUERY_COUNT; i++) {
-            for (Customer c: customers) {
-                if (c.id == queryIds.get(i)) {
-                    // do something for the customer
-                    break;
-                }
-            }
+            Customer c = customerHashMap.get(queryIds.get(i));
+            // do something for the customer
         }
     }
 
